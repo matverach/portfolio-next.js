@@ -30,7 +30,7 @@ const projects = [
     name: "disney-api",
     description:
       "REST API where you can view, edit, add, and delete Disney characters, the movies they have appeared in, and the genres of those movies. Used Springboot and MySQL. Alkemy backend challenge.",
-    image: "/walt.gif",
+    image: "https://i.imgur.com/1EACk7S.png",
     github: "https://github.com/mattverach/disney-challenge-alkemy",
     link: "https://github.com/mattverach/disney-challenge-alkemy",
     tags: ["java", "spring-boot", "mysql", "rest-api"],
