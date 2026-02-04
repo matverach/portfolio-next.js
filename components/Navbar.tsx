@@ -44,7 +44,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="https://github.com/mattverach"
+              href="https://github.com/matverach"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 px-3 py-1.5 text-sm border border-tui-border text-tui-text-secondary hover:text-tui-accent hover:border-tui-accent transition-colors"
