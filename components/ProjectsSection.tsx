@@ -11,7 +11,7 @@ const projects = [
     name: "paysentry",
     description:
       "Authorization Gateway for AI Agent Payments. Think of it as OAuth but for money: users define policies (limits, categories, merchants) and PaySentry validates each transaction before executing it. Currently in architecture design phase.",
-    image: "https://i.imgur.com/3xwIg3K.png",
+    image: "https://i.imgur.com/caVNkdH.png",
     github: "https://github.com/mattverach/paysentry",
     link: "https://github.com/mattverach/paysentry",
     tags: ["python", "fastapi", "postgresql", "system-design"],
