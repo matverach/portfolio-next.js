@@ -1,94 +1,118 @@
-"use client" // this is a client component
-import React from "react"
-import { useState } from "react"
+"use client"
+import React, { useState } from "react"
 import { Link } from "react-scroll/modules"
-import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
-import { RiMoonFill, RiSunLine } from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
-import { SocialIcon } from "react-social-icons"
 
-interface NavItem {
-  label: string
-  page: string
-}
-
-
+const navItems = [
+  { label: "about", page: "about" },
+  { label: "experience", page: "experience" },
+  { label: "projects", page: "projects" },
+]
 
 export default function Navbar() {
-  const { systemTheme, theme, setTheme } = useTheme()
-  const currentTheme = theme === "system" ? systemTheme : theme
-  const pathname = usePathname()
   const [navbar, setNavbar] = useState(false)
+
   return (
-    <header className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-[#2a2f33] dark:border-b dark:border-stone-600">
-      
-      <div className="justify-between md:items-center md:flex">
-      <div>
-        <SocialIcon
-          url="https://www.linkedin.com/in/mattverach/"
-          fgColor="currentColor"
-          bgColor="transparent"
-          target={"_blank"}
-        />
-        <SocialIcon
-          url="https://twitter.com/Mattverach"
-          fgColor="currentColor"
-          bgColor="transparent"
-          target={"_blank"}
-        />
-        <SocialIcon
-          url="https://github.com/mattverach"
-          fgColor="currentColor"
-          bgColor="transparent"
-          target={"_blank"}
-        />
-      </div>
-        <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link to="home">
-            </Link>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
-              </button>
+    <header className="w-full fixed top-0 z-50 bg-tui-bg border-b border-tui-border">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14">
+          {/* Logo / Name */}
+          <Link to="home" className="cursor-pointer">
+            <div className="flex items-center gap-2">
+              <span className="text-tui-accent">~</span>
+              <span className="text-tui-text font-semibold">matias-vera</span>
+              <span className="text-tui-text-muted">/</span>
+              <span className="text-tui-text-secondary">portfolio</span>
+              <span className="text-tui-accent animate-blink">_</span>
             </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.page}
+                to={item.page}
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="px-3 py-1.5 text-sm text-tui-text-secondary hover:text-tui-accent hover:bg-tui-bg-secondary cursor-pointer transition-colors"
+              >
+                <span className="text-tui-text-muted">/</span>
+                {item.label}
+              </Link>
+            ))}
+            <a
+              href="https://github.com/mattverach"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-4 px-3 py-1.5 text-sm border border-tui-border text-tui-text-secondary hover:text-tui-accent hover:border-tui-accent transition-colors"
+            >
+              github
+            </a>
+            <a
+              href="https://www.linkedin.com/in/mattverach/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 text-sm border border-tui-border text-tui-text-secondary hover:text-tui-cyan hover:border-tui-cyan transition-colors"
+            >
+              linkedin
+            </a>
+          </nav>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              className="p-2 text-tui-text-secondary hover:text-tui-accent"
+              onClick={() => setNavbar(!navbar)}
+            >
+              {navbar ? <IoMdClose size={24} /> : <IoMdMenu size={24} />}
+            </button>
           </div>
         </div>
 
-        <div>
-          
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
-          >
-            
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              
-              {currentTheme === "dark" ? (
-                <button
-                  onClick={() => setTheme("light")}
-                  className="bg-slate-100 p-2 rounded-xl"
+        {/* Mobile Navigation */}
+        {navbar && (
+          <nav className="md:hidden border-t border-tui-border py-4">
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.page}
+                  to={item.page}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  onClick={() => setNavbar(false)}
+                  className="px-3 py-2 text-sm text-tui-text-secondary hover:text-tui-accent hover:bg-tui-bg-secondary cursor-pointer"
                 >
-                  <RiSunLine size={25} color="black" />
-                </button>
-              ) : (
-                <button
-                  onClick={() => setTheme("dark")}
-                  className="bg-slate-100 p-2 rounded-xl"
+                  <span className="text-tui-accent mr-2">$</span>
+                  cd ./{item.label}
+                </Link>
+              ))}
+              <div className="flex gap-2 px-3 pt-2 mt-2 border-t border-tui-border">
+                <a
+                  href="https://github.com/mattverach"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-sm border border-tui-border text-tui-text-secondary hover:text-tui-accent hover:border-tui-accent"
                 >
-                  <RiMoonFill size={25} />
-                </button>
-              )}
+                  github
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/matias-vera-dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-sm border border-tui-border text-tui-text-secondary hover:text-tui-cyan hover:border-tui-cyan"
+                >
+                  linkedin
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
+          </nav>
+        )}
       </div>
     </header>
   )
 }
-

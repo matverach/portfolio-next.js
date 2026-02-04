@@ -1,9 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #22c55e;
+  --accent-dim: #166534;
+  --cyan: #06b6d4;
+  --yellow: #eab308;
+}
+
+* {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Scrollbar TUI style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* TUI Box styles */
+.tui-box {
+  border: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.tui-box::before {
+  content: '┌';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  color: var(--border);
+}
+
+/* Terminal window style */
+.terminal-window {
+  border: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+}
+
+.terminal-header {
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-body {
+  padding: 16px;
+}
+
+/* Prompt style */
+.prompt::before {
+  content: '~$';
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+/* Link hover effects */
+a {
+  transition: color 0.15s ease;
+}
+
 @layer components {
-    .heroButton {
-        @apply px-6 py-2 border border-[#242424] rounded-full uppercase text-xs tracking-widest text-[#868d80] transition-all hover:border-[#d9bb80] hover:text-[#d9bb80]
-    }
+  .heroButton {
+    @apply px-4 py-2 border border-[#2a2a2a] font-mono text-sm tracking-wide text-[#a1a1aa] transition-all hover:border-[#22c55e] hover:text-[#22c55e] hover:bg-[#22c55e]/10;
+  }
+
+  .tui-link {
+    @apply text-[#22c55e] hover:text-[#4ade80] hover:underline underline-offset-4 transition-colors;
+  }
+
+  .tui-tag {
+    @apply px-2 py-1 text-xs border border-[#2a2a2a] text-[#a1a1aa] bg-[#111111];
+  }
+
+  .tui-section-title {
+    @apply text-[#22c55e] font-bold mb-2;
+  }
 }

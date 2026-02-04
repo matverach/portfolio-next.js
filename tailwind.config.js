@@ -5,26 +5,46 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: [
+    'text-tui-cyan',
+    'text-tui-yellow',
+    'text-tui-accent',
+    'text-tui-purple',
+    'text-tui-red',
+    'hover:border-tui-cyan',
+    'hover:border-tui-yellow',
+    'hover:border-tui-accent',
+    'hover:border-tui-purple',
+    'hover:border-tui-red',
   ],
   theme: {
     extend: {
-      screens: { sm: "480px", md: "768px", lg: "976px", xl: "1440pd" },
-      animation: {
-        fadeIn: "fadeIn 1.5s",
-        bounce:
-          "bounce 0.5s alternate cubic-bezier(0.95, 0.05, 0.795, 0.035) infinite",
-        slideUp: "slideUp 0.5s",
-        slideUpEaseInOut: "slideUp 0.5s ease-in-out",
-        slideUpCubiBezier: "slideUp 1s cubic-bezier(0.165, 0.84, 0.44, 1)",
+      colors: {
+        'tui-bg': '#0a0a0a',
+        'tui-bg-secondary': '#111111',
+        'tui-bg-tertiary': '#1a1a1a',
+        'tui-border': '#2a2a2a',
+        'tui-text': '#e4e4e7',
+        'tui-text-secondary': '#a1a1aa',
+        'tui-text-muted': '#52525b',
+        'tui-accent': '#22c55e',
+        'tui-accent-dim': '#166534',
+        'tui-cyan': '#06b6d4',
+        'tui-yellow': '#eab308',
+        'tui-red': '#ef4444',
+        'tui-purple': '#a855f7',
       },
-      animationDelay: {
-        0: "0s",
-        2: "0.2s",
-        4: "0.4s",
-        6: "0.6s",
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      animation: {
+        fadeIn: "fadeIn 0.5s ease-out",
+        slideUp: "slideUp 0.5s ease-out",
+        slideUpCubiBezier: "slideUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)",
+        blink: "blink 1s infinite",
+        typing: "typing 3s steps(40, end)",
       },
       keyframes: {
         fadeIn: {
@@ -32,12 +52,16 @@ module.exports = {
           to: { opacity: 1 },
         },
         slideUp: {
-          from: { transform: "translateY(100%)" },
-          to: { transform: "translateY(0)" },
+          from: { transform: "translateY(20px)", opacity: 0 },
+          to: { transform: "translateY(0)", opacity: 1 },
         },
-        bounce: {
-          from: { transform: "translateY(10px)" },
-          to: { transform: "translateY(0)" },
+        blink: {
+          "0%, 50%": { opacity: 1 },
+          "51%, 100%": { opacity: 0 },
+        },
+        typing: {
+          from: { width: 0 },
+          to: { width: "100%" },
         },
       },
     },
